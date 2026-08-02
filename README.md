@@ -1,12 +1,12 @@
 # Universal Traveler
 
-Universal Traveler is building a world where people of all abilities can discover accessible travel, lodging, experiences, and community.
+Universal Traveler is an accessibility-first travel platform: verified accessibility data, AI navigation, and inclusive booking that let people of all abilities explore the world with confidence.
 
 ## 🤝 Connect with us at AI4 2026
 
-**[Join the waitlist →](https://docs.google.com/forms/d/e/1FAIpQLScPywvsCGKbM1-yAlHAmDe8yHGm6rLshOSI3xm-L42DfgEBpA/viewform)**
+**[Join the Early Access Waitlist →](https://docs.google.com/forms/d/e/1FAIpQLScPywvsCGKbM1-yAlHAmDe8yHGm6rLshOSI3xm-L42DfgEBpA/viewform)**
 
-Be among the first travelers, clinicians, caregivers, and advocates to help shape the future of accessible travel.
+Travelers, caregivers, clinicians and advocates — help shape the future of accessible travel.
 
 ## 🌐 Live site
 
