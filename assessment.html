@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clinical Travel Assessment</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e6f0ff, #ffffff);
+      text-align: center;
+      padding: 40px;
+    }
+
+    .card {
+      background: white;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    select {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+    }
+
+    button {
+      background: #14b8a6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    pre {
+      text-align: left;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 16px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <a href="index.html">
+    <button>← Back Home</button>
+  </a>
+
+  <h1>Clinical Travel Assessment</h1>
+
+  <p>Help us understand your travel needs.</p>
+
+  <p>Mobility Device</p>
+  <select id="mobility">
+    <option>Manual Wheelchair</option>
+    <option>Power Wheelchair</option>
+    <option>Walker</option>
+    <option>Cane</option>
+    <option>None</option>
+  </select>
+
+  <p>Do you experience fatigue during travel?</p>
+  <select id="fatigue">
+    <option>Often</option>
+    <option>Sometimes</option>
+    <option>Rarely</option>
+  </select>
+
+  <p>Do you use supplemental oxygen?</p>
+  <select id="oxygen">
+    <option>No</option>
+    <option>Occasionally</option>
+    <option>Yes, regularly</option>
+  </select>
+
+  <p>Do you need access to electrical outlets for medical or mobility equipment?</p>
+  <select id="power">
+    <option>No</option>
+    <option>Yes, for power wheelchair or scooter charging</option>
+    <option>Yes, for portable oxygen or medical equipment</option>
+    <option>Yes, for both mobility and medical equipment</option>
+  </select>
+
+  <p>Do uneven surfaces make travel more difficult?</p>
+  <select id="surface">
+    <option>Yes</option>
+    <option>Sometimes</option>
+    <option>No</option>
+  </select>
+
+  <p>Do you require caregiver assistance during travel?</p>
+  <select id="caregiver">
+    <option>Always</option>
+    <option>Sometimes</option>
+    <option>Rarely</option>
+    <option>Never</option>
+  </select>
+
+  <p>Do you become overwhelmed in noisy or crowded environments?</p>
+  <select id="sensory">
+    <option>Often</option>
+    <option>Sometimes</option>
+    <option>Rarely</option>
+  </select>
+
+  <p>How important is access to elevators and step-free routes?</p>
+  <select id="stepfree">
+    <option>Essential</option>
+    <option>Preferred</option>
+    <option>Not Important</option>
+  </select>
+
+  <br><br>
+
+  <button onclick="showProfile()">
+    Begin Assessment
+  </button>
+
+  <pre id="profile"></pre>
+
+  <div id="joinCta" style="display:none; margin-top: 20px;">
+    <p><strong>Your profile is ready — join the waitlist so we can build for your needs.</strong></p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPywvsCGKbM1-yAlHAmDe8yHGm6rLshOSI3xm-L42DfgEBpA/viewform" target="_blank">
+      <button>Join the Waitlist</button>
+    </a>
+  </div>
+</div>
+
+<script>
+function showProfile() {
+  const mobility = document.getElementById("mobility").value;
+  const fatigue = document.getElementById("fatigue").value;
+  const oxygen = document.getElementById("oxygen").value;
+  const power = document.getElementById("power").value;
+  const surface = document.getElementById("surface").value;
+  const caregiver = document.getElementById("caregiver").value;
+  const sensory = document.getElementById("sensory").value;
+  const stepfree = document.getElementById("stepfree").value;
+
+ let priority = "Moderate";
+let fuel = "🚀⛽⛽⛽⛽⛽";
+let drainCount = 0;
+
+let drains = "";
+let refuels = "";
+
+  if (
+    mobility !== "None" ||
+    fatigue === "Often" ||
+    oxygen === "Yes, regularly" ||
+    power !== "No" ||
+    surface === "Yes" ||
+    caregiver === "Always" ||
+    sensory === "Often" ||
+    stepfree === "Essential"
+  ) {
+    priority = "High";
+  }
+
+  if (fatigue === "Often") {
+    drains += "- Fatigue\n";
+    drainCount++;
+    refuels += "🔋 Rest break planning\n";
+  }
+
+  if (oxygen === "Yes, regularly") {
+    drains += "- Oxygen Planning\n";
+    drainCount++;
+    refuels += "🔋 Oxygen backup planning\n";
+  }
+
+  if (power !== "No") {
+    drains += "- Power Access / Charging Needs\n";
+    drainCount++;
+    refuels += "🔋 Confirm electrical outlet access at hotels, airports, rest stops, restaurants, and attractions\n";
+refuels += "🔋 Ask whether outlets are reachable from accessible seating areas\n";
+refuels += "🔋 Plan charging windows for power chairs, scooters, portable oxygen, and medical equipment\n";
+  }
+
+  if (surface === "Yes") {
+    drains += "- Uneven Surfaces\n";
+    drainCount++;
+    refuels += "🔋 Accessible route verification\n";
+  }
+
+  if (caregiver === "Always") {
+    drains += "- Caregiver Coordination\n";
+    drainCount++;
+    refuels += "🔋 Caregiver travel support planning\n";
+  }
+
+  if (sensory === "Often") {
+    drains += "- Sensory Environment\n";
+    drainCount++;
+    refuels += "🔋 Sensory-friendly environment planning\n";
+  }
+
+  if (stepfree === "Essential") {
+    drains += "- Step-Free Access Needs\n";
+    drainCount++;
+    refuels += "🔋 Elevator and step-free route confirmation\n";
+  }
+
+  if (drains === "") {
+    drains = "- No major fuel drains selected\n";
+    refuels = "🔋 Continue standard accessible travel planning\n";
+  }
+if (drainCount >= 5) {
+  fuel = "🚀⛽";
+}
+else if (drainCount >= 3) {
+  fuel = "🚀⛽⛽";
+}
+else if (drainCount >= 1) {
+  fuel = "🚀⛽⛽⛽⛽";
+}
+  const profile = "Travel Readiness Profile\n\n" +
+  "Accessibility Priority: " + priority + "\n\n" +
+  "Travel Readiness Fuel Level:\n" +
+  fuel + "\n\n" +
+  "Fuel Drains Identified:\n" +
+  drains + "\n" +
+  "Refueling Opportunities:\n" +
+  refuels + "\n" +
+  "Mobility Support: " + mobility + "\n\n" +
+  "Fatigue Consideration: " + fatigue + "\n\n" +
+  "Oxygen Planning: " + oxygen + "\n\n" +
+  "Power Access Needs: " + power + "\n\n" +
+  "Surface Sensitivity: " + surface + "\n\n" +
+  "Caregiver Support Consideration: " + caregiver + "\n\n" +
+  "Sensory Environment Consideration: " + sensory + "\n\n" +
+  "Step-Free Access Priority: " + stepfree + "\n\n" +
+  "Travel Planning Recommendation:\n" +
+  "Structured planning recommended with attention to mobility, fatigue, sensory needs, power access, caregiver support, and accessible route planning.\n\n" +
+  "Destination Match:\n\n" +
+  "- Step-free urban destinations\n" +
+  "- Accessible beach experiences\n" +
+  "- Sensory-friendly attractions\n" +
+  "- Caregiver-supported travel options\n" +
+  "- Accessible hotels near medical, mobility, and charging resources";
+
+  document.getElementById("profile").innerText = profile;
+  document.getElementById("joinCta").style.display = "block";
+}
+</script>
+
+</body>
+</html>
